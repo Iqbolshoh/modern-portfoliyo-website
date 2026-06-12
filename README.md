@@ -27,7 +27,7 @@ A modern, interactive, and fully responsive portfolio website built with HTML, C
 
 ## 📂 File Structure
 
-```
+```bash
 
 modern-portfolio-website/
 ├── index.html # Main website file
