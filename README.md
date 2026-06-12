@@ -2,7 +2,6 @@
 
 A modern, interactive, and fully responsive portfolio website built with HTML, CSS, and JavaScript. Ready to deploy on GitHub Pages for free.
 
-![Portfolio Screenshot](https://via.placeholder.com/800x400?text=Portfolio+Screenshot)
 
 ## ✨ Features
 
@@ -46,7 +45,7 @@ Go to GitHub.com → New repository → Name it (e.g., `my-portfolio`)
 ### 2. Upload the files
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/my-portfolio.git
+git clone https://github.com/Iqbolshoh/modern-portfoliyo-website.git
 cd my-portfolio
 # Copy index.html file here
 git add .
