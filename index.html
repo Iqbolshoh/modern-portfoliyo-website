@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamonaviy Portfolio | GitHub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ========== HEADER (ZO'R VERSION) ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at 20% 50%, rgba(255,0,150,0.1), transparent 50%);
+        }
+
+        /* animatsiyali fon to'lqinlari */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 50px,
+                rgba(255,255,255,0.03) 50px,
+                rgba(255,255,255,0.03) 100px
+            );
+            animation: shift 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shift {
+            0% { transform: translate(-10%, -10%) rotate(0deg); }
+            100% { transform: translate(10%, 10%) rotate(360deg); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+            max-width: 900px;
+        }
+
+        /* 3D profil rasm */
+        .profile-wrapper {
+            perspective: 500px;
+            margin-bottom: 30px;
+        }
+
+        .profile-3d {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            cursor: pointer;
+        }
+
+        .profile-3d:hover {
+            transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 4px rgba(255,255,255,0.2);
+            transition: all 0.3s;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* neon chiziq */
+        .neon-line {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #ff6b6b);
+            margin: 20px auto;
+            border-radius: 2px;
+            animation: neonPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes neonPulse {
+            0%, 100% { opacity: 0.5; width: 80px; }
+            50% { opacity: 1; width: 120px; box-shadow: 0 0 10px #4ecdc4; }
+        }
+
+        /* katta sarlavha gradient */
+        .glow-text {
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #ff6b6b, #4ecdc4, #ffd93d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradientShift 5s ease infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* yozuv mashinkasi (typing) */
+        .typing-container {
+            font-size: 1.8rem;
+            margin: 20px 0;
+        }
+
+        #typed-text {
+            color: #4ecdc4;
+            font-weight: 600;
+            border-right: 3px solid #4ecdc4;
+            padding-right: 5px;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        /* chiroyli tugmalar */
+        .btn-group {
+            margin: 40px 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-glow {
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,107,107,0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4ecdc4;
+            color: #4ecdc4;
+        }
+
+        .btn-outline:hover {
+            background: #4ecdc4;
+            color: #0f0c29;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(78,205,196,0.4);
+        }
+
+        /* pastga skroll tugmasi */
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .scroll-down span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 30px;
+            position: relative;
+        }
+
+        .scroll-down span::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 10px;
+            background: white;
+            border-radius: 3px;
+            animation: scrollWheel 2s infinite;
+        }
+
+        @keyframes scrollWheel {
+            0% { opacity: 1; top: 10px; }
+            80% { opacity: 0; top: 25px; }
+            100% { opacity: 0; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        /* ========== MAIN CONTENT ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.4s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            background: rgba(255,255,255,0.15);
+            border-color: rgba(78,205,196,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: #4ecdc4;
+        }
+
+        @media (max-width: 768px) {
+            .glow-text {
+                font-size: 2.5rem;
+            }
+            .typing-container {
+                font-size: 1.2rem;
+            }
+            .btn-group {
+                gap: 15px;
+            }
+            .btn-glow {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== ZO'R HEADER ========== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="profile-wrapper">
+                <div class="profile-3d">
+                    <div class="profile-img">
+                        🚀
+                    </div>
+                </div>
+            </div>
+            
+            <div class="neon-line"></div>
+            
+            <h1 class="glow-text">Kreativ Dasturchi</h1>
+            
+            <div class="typing-container">
+                Men <span id="typed-text"></span>
+            </div>
+            
+            <p class="subtitle">
+                Zamonaviy, tezkor va chiroyli veb-saytlar yarataman. 
+                Sizning g'oyalaringiz — mening kodlarim bilan hayotga kiradi.
+            </p>
+            
+            <div class="btn-group">
+                <button class="btn-glow btn-primary" onclick="alert('Loyihalarim tez kunda! 🚀')">Loyihalarim</button>
+                <button class="btn-glow btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Aloqa</button>
+            </div>
+        </div>
+        
+        <div class="scroll-down" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ========== QOLGAN QISMI ========== -->
+    <div class="container" id="about">
+        <div class="grid">
+            <div class="card">
+                <h3>📌 Men haqimda</h3>
+                <p>3+ yil tajriba, 30+ loyiha. Frontend va dizayn sohasida zamonaviy yechimlar. Har bir loyiha uchun kreativ va foydalanuvchi uchun qulay interfeys yarataman.</p>
+                <button class="btn-glow btn-outline" style="margin-top:15px; padding:8px 20px;" onclick="alert('Tajribam haqida batafsil yozdim 📄')">Ko'proq</button>
+            </div>
+            <div class="card">
+                <h3>💼 Asosiy loyihalar</h3>
+                <p>✨ E-commerce platforma<br>✨ Kafe uchun interaktiv menyu<br>✨ Real-time chat ilovasi<br>✨ Portfolio generator</p>
+                <button class="btn-glow btn-outline" style="margin-top:15px; padding:8px 20px;" onclick="alert('GitHub profilimga tashrif buyuring 🐙')">GitHub'da ko'rish</button>
+            </div>
+            <div class="card">
+                <h3>⚙️ Texnologiyalar</h3>
+                <p>React, Next.js, Tailwind, Framer Motion, Node.js, MongoDB, Figma, Three.js</p>
+                <button class="btn-glow btn-outline" style="margin-top:15px; padding:8px 20px;" onclick="alert('Stack: MERN + TypeScript + Tailwind 🛠️')">To'liq ro'yxat</button>
+            </div>
+        </div>
+
+        <div class="contact-form" id="contact">
+            <h3 style="font-size: 2rem; margin-bottom: 20px;">📩 Bog'lanish</h3>
+            <form id="contactForm">
+                <input type="text" id="name" placeholder="Ismingiz" required>
+                <input type="email" id="email" placeholder="Email manzilingiz" required>
+                <textarea id="message" rows="4" placeholder="Xabaringiz..."></textarea>
+                <button type="submit" class="btn-glow btn-primary" style="width:100%; margin-top:15px;">Yuborish ✨</button>
+            </form>
+            <p id="formMessage" style="margin-top: 15px; text-align:center;"></p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#">🐙</a>
+            <a href="#">📘</a>
+            <a href="#">📷</a>
+            <a href="#">💼</a>
+            <a href="#">🎨</a>
+        </div>
+        <p style="margin-top: 25px;">© 2026 | Zamonaviy Portfolio | GitHub Pages</p>
+    </footer>
+
+    <script>
+        // Yozuv mashinkasi effekti (typing animation)
+        const words = ["Dasturchi", "Dizayner", "Kreativ", "Muammo yechuvchi", "Freelancer"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typedElement = document.getElementById("typed-text");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typedElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typedElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                setTimeout(typeEffect, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(typeEffect, 500);
+            } else {
+                setTimeout(typeEffect, isDeleting ? 100 : 150);
+            }
+        }
+        typeEffect();
+
+        // Contact form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if(name && email) {
+                document.getElementById('formMessage').innerHTML = `✅ Rahmat ${name}! Xabaringiz qabul qilindi. Tez orada javob beraman.`;
+                document.getElementById('formMessage').style.color = "#4ecdc4";
+                this.reset();
+            } else {
+                document.getElementById('formMessage').innerHTML = "❌ Iltimos, ism va emailni to'ldiring.";
+                document.getElementById('formMessage').style.color = "#ff6b6b";
+            }
+        });
+    </script>
+</body>
+</html>
