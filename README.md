@@ -27,9 +27,14 @@ A modern, interactive, and fully responsive portfolio website built with HTML, C
 
 ## 📂 File Structure
 
+```
+
 modern-portfolio-website/
 ├── index.html # Main website file
 └── README.md # This file
+
+
+```
 
 
 ## 🚀 How to Deploy on GitHub Pages
