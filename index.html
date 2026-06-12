@@ -30,7 +30,6 @@
             background: radial-gradient(circle at 20% 50%, rgba(255,0,150,0.1), transparent 50%);
         }
 
-        /* animatsiyali fon to'lqinlari */
         .hero::before {
             content: '';
             position: absolute;
@@ -59,7 +58,7 @@
             max-width: 900px;
         }
 
-        /* 3D profil rasm */
+        /* 3D profil rasm - ENDI RAKETA YO'Q, HAQIQIY RASM UCHUN */
         .profile-wrapper {
             perspective: 500px;
             margin-bottom: 30px;
@@ -83,14 +82,26 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Agar rasm bo'lmasa, default gradient fon */
+        .profile-img.no-image {
             background: linear-gradient(135deg, #ff6b6b, #4ecdc4, #45b7d1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 4px rgba(255,255,255,0.2);
-            transition: all 0.3s;
-            animation: float 3s ease-in-out infinite;
+            font-size: 3rem;
         }
 
         @keyframes float {
@@ -98,7 +109,6 @@
             50% { transform: translateY(-15px); }
         }
 
-        /* neon chiziq */
         .neon-line {
             width: 100px;
             height: 4px;
@@ -113,7 +123,6 @@
             50% { opacity: 1; width: 120px; box-shadow: 0 0 10px #4ecdc4; }
         }
 
-        /* katta sarlavha gradient */
         .glow-text {
             font-size: 4.5rem;
             font-weight: 800;
@@ -132,7 +141,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* yozuv mashinkasi (typing) */
         .typing-container {
             font-size: 1.8rem;
             margin: 20px 0;
@@ -157,7 +165,6 @@
             margin: 20px auto;
         }
 
-        /* chiroyli tugmalar */
         .btn-group {
             margin: 40px 0;
             display: flex;
@@ -202,7 +209,6 @@
             box-shadow: 0 5px 20px rgba(78,205,196,0.4);
         }
 
-        /* pastga skroll tugmasi */
         .scroll-down {
             position: absolute;
             bottom: 30px;
@@ -299,24 +305,151 @@
             font-size: 1rem;
         }
 
+        /* ========== FOOTER - YAXSHILANGAN ========== */
         footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, #0f0c29 0%, #1a153a 100%);
+            position: relative;
+            overflow: hidden;
         }
 
-        .social-icons a {
-            color: white;
-            margin: 0 15px;
-            font-size: 1.8rem;
-            text-decoration: none;
-            transition: all 0.3s;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
             display: inline-block;
         }
 
-        .social-icons a:hover {
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 3px;
+        }
+
+        .footer-section p {
+            opacity: 0.8;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-link:hover {
             transform: translateY(-5px) scale(1.1);
-            color: #4ecdc4;
+        }
+
+        .social-link:nth-child(1):hover { background: #E1306C; box-shadow: 0 5px 20px #E1306C; }
+        .social-link:nth-child(2):hover { background: #1877F2; box-shadow: 0 5px 20px #1877F2; }
+        .social-link:nth-child(3):hover { background: #1DA1F2; box-shadow: 0 5px 20px #1DA1F2; }
+        .social-link:nth-child(4):hover { background: #333; box-shadow: 0 5px 20px #333; }
+        .social-link:nth-child(5):hover { background: #0077B5; box-shadow: 0 5px 20px #0077B5; }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border-radius: 50px;
+            border: none;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .newsletter-form button {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255,107,107,0.4);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+            font-size: 1.5rem;
+            border: none;
+            color: white;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255,107,107,0.5);
         }
 
         @media (max-width: 768px) {
@@ -326,25 +459,35 @@
             .typing-container {
                 font-size: 1.2rem;
             }
-            .btn-group {
-                gap: 15px;
+            .footer-grid {
+                gap: 30px;
             }
-            .btn-glow {
-                padding: 10px 20px;
-                font-size: 0.9rem;
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ========== ZO'R HEADER ========== -->
+    <!-- ========== HEADER ========== -->
     <section class="hero">
         <div class="hero-content">
             <div class="profile-wrapper">
                 <div class="profile-3d">
                     <div class="profile-img">
-                        🚀
+                        <!-- O'Z RASMINGIZNI LINKINI QO'YING -->
+                        <img src="https://iqbolshoh.uz/images/logos/iqbolshoh-2.png" alt="Profil rasmi">
+                        <!-- 
+                            Rasm o'zgartirish:
+                            1. O'zingizning rasm linkini qo'ying (masalan: "images/myphoto.jpg")
+                            2. Yoki "https://randomuser.me/api/portraits/women/68.jpg" ayol uchun
+                            3. Yoki "https://via.placeholder.com/180" placeholder rasm
+                        -->
                     </div>
                 </div>
             </div>
@@ -373,7 +516,7 @@
         </div>
     </section>
 
-    <!-- ========== QOLGAN QISMI ========== -->
+    <!-- ========== MAIN CONTENT ========== -->
     <div class="container" id="about">
         <div class="grid">
             <div class="card">
@@ -405,19 +548,62 @@
         </div>
     </div>
 
+    <!-- ========== FOOTER - YANGI, ZO'R ========== -->
     <footer>
-        <div class="social-icons">
-            <a href="#">🐙</a>
-            <a href="#">📘</a>
-            <a href="#">📷</a>
-            <a href="#">💼</a>
-            <a href="#">🎨</a>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Men haqimda</h3>
+                    <p>🎯 Zamonaviy veb-saytlar yaratuvchi dasturchi</p>
+                    <p>⭐ 30+ muvaffaqiyatli loyiha</p>
+                    <p>🌍 Global mijozlar bilan ishlayman</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">🐙</a>
+                        <a href="#" class="social-link">💼</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Tez havolalar</h3>
+                    <p>🏠 Bosh sahifa</p>
+                    <p>📁 Loyihalar</p>
+                    <p>📞 Aloqa</p>
+                    <p>📄 Blog</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>📧 jamshid@example.com</p>
+                    <p>📞 +998 90 123 45 67</p>
+                    <p>📍 Toshkent, O'zbekiston</p>
+                    <p>⏰ Dushanba - Shanba: 9:00 - 18:00</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Yangiliklar</h3>
+                    <p>Eng so'nggi yangiliklardan xabardor bo'ling</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Email manzilingiz" required>
+                        <button type="submit">Obuna</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> Kreativ Dasturchi. Barcha huquqlar himoyalangan.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">🔒 Maxfiylik siyosati | Foydalanish shartlari</p>
+            </div>
         </div>
-        <p style="margin-top: 25px;">© 2026 | Zamonaviy Portfolio | GitHub Pages</p>
     </footer>
 
+    <!-- Back to Top tugmasi -->
+    <button class="back-to-top" id="backToTop">⬆️</button>
+
     <script>
-        // Yozuv mashinkasi effekti (typing animation)
+        // Yozuv mashinkasi effekti
         const words = ["Dasturchi", "Dizayner", "Kreativ", "Muammo yechuvchi", "Freelancer"];
         let wordIndex = 0;
         let charIndex = 0;
@@ -461,6 +647,32 @@
                 document.getElementById('formMessage').innerHTML = "❌ Iltimos, ism va emailni to'ldiring.";
                 document.getElementById('formMessage').style.color = "#ff6b6b";
             }
+        });
+
+        // Newsletter form
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if(email) {
+                alert(`✅ ${email} manzili yangiliklar ro'yxatiga qo'shildi!`);
+                this.reset();
+            }
+        });
+
+        // Current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Back to top tugmasi
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
